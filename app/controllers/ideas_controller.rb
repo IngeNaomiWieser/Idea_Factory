@@ -1,7 +1,7 @@
 class IdeasController < ApplicationController
 
   #Nu kunnen niet ingelogde users alleen de ideas and reviews (index en show) zien, maar geen ideeen genereren
-  before_action :authenticate_user!, except: [:index, :show]
+  # before_action :authenticate_user!, except: [:index, :show]
   before_action :find_idea, only: [:show, :edit, :update, :destroy]
 
     def index
@@ -29,21 +29,31 @@ class IdeasController < ApplicationController
 
     def edit
       # @idea = Idea.find params[:id]
+      unless can? :edit, @idea
+        redirect_to @idea, alert: 'You can not edit an idea that is not yours'
+      end
     end
 
     def update
       # @idea = Idea.find params[:id]
-      if @idea.update idea_params
+      if cannot? :edit, @idea
+        redirect_to @idea
+      elsif @idea.update idea_params
         redirect_to idea_path(@idea), notice: "Idea was successfully updated"
       else
+        flash.now[:alert] = "Problem Updating"
         render :edit
       end
     end
 
     def destroy
       # @idea = Idea.find params[:id]
-      @idea.destroy
-      redirect_to root_path, notice: 'Idea deleted'
+      if can? :destroy, @idea
+        @idea.destroy
+        redirect_to root_path, notice: 'Idea deleted'
+      else
+        redirect_to idea_path(@idea), alert: "You can not remove an idea that is not yours"
+      end
     end
 
     private

@@ -18,8 +18,11 @@ class ReviewsController < ApplicationController
   def destroy
     @idea = Idea.find params[:idea_id]
     @review = Review.find params[:id]
-    @review.destroy
-    redirect_to idea_path(@idea), notice: 'Your review was deleted'
+    if can? :destroy, @review
+      @review.destroy
+      redirect_to @idea, notice: 'Your review was deleted'
+    else
+      redirect_to @idea, alert: "You can not remove an review that is not yours."
+    end
   end
-
 end
