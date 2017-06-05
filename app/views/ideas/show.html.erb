@@ -3,7 +3,6 @@
 <h3><%= @idea.title %></h3>
 <p><%= @idea.body %></p>
 
-<p><strong>Author:</strong> </p>
 
 <% if can? :edit, @idea %>
   <%= link_to "Edit", edit_idea_path(@idea), class: "btn btn-primary" %>
@@ -24,7 +23,7 @@
 
   <% @idea.reviews.each do |review| %>
     <%= review.body %>
-    <% if can? :destroy, @review %>
+    <% if can? :destroy, review %>
       <%= link_to 'Delete your review', [@idea, review],
         method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger pull-right" %>
     <% end %>
