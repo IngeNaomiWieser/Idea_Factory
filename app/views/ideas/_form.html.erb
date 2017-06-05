@@ -1,0 +1,19 @@
+<% if @idea.errors.any? %>
+  <u>
+    <% @idea.errors.full_messages.each do |msg| %>
+      <li> <%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="well">
+      <%= bootstrap_form_for @idea do |f| %>
+      <%= f.text_field :title%>
+      <%= f.text_area :body%>
+      <%= f.submit 'Submit', class: "btn btn-success"%>
+      <% end %>
+    </div>
+  </div>
+</div>

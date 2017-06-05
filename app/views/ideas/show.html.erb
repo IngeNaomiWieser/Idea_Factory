@@ -1,0 +1,24 @@
+<h1>Show page</h1>
+
+<h3><%= @idea.title %></h3>
+<p><%= @idea.body %></p>
+
+<%= link_to "Edit", edit_idea_path(@idea), class: "btn btn-primary" %>
+<%= link_to 'Delete', idea_path(@idea),
+                          method: :delete,
+                          data:{confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+
+  <h2>Submit your review: </h2>
+  <%= @review.errors.full_messages.join(', ') %>
+  <%= bootstrap_form_for [@idea, @review] do |f| %>
+    <%= f.text_area :body %>
+    <%= f.submit 'Submit', class: "btn btn-success" %>
+  <% end %>
+  <hr>
+
+  <% @idea.reviews.each do |review| %>
+    <%= review.body %>
+    <%= link_to 'Delete your review', [@idea, review],
+        method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger pull-right" %>
+    <hr>
+  <% end %>

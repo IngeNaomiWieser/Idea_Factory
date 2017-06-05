@@ -1,0 +1,6 @@
+<h1>Home page </h1>
+
+<% @ideas.each do |idea| %>
+  <h3><%= link_to idea.title, idea_path(idea) %></h3>
+  <p><%= idea.body %></p>
+<%end%>
