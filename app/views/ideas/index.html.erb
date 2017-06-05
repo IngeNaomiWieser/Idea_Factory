@@ -1,6 +1,32 @@
-<h1>Home page </h1>
+<div class="container">
+  <% @ideas.each do |idea| %>
+    <div class="row">
+      <div class="col-sm-6 idea-title">
+        <h5><%= link_to idea.title, idea_path(idea) %></h5>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <%= idea.body %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <p class="pull-left author"> By <%= idea.user.first_name %> </p>
+      </div>
 
-<% @ideas.each do |idea| %>
-  <h3><%= link_to idea.title, idea_path(idea) %></h3>
-  <p><%= idea.body %></p>
-<%end%>
+      <div class="col-sm-4 btn-group">
+        <button type="button" class="btn btn-default">Joined</button>
+        <button type="button" class="btn btn-default">Like</button>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="pull-right">
+          Members: 2
+          Likes: 5
+        </div>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>

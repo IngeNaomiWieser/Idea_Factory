@@ -15,3 +15,39 @@
  *= require_tree .
  *= require_self
  */
+
+ * {
+   border-radius: 5px;
+ }
+
+ body {
+   margin: 0px;
+ }
+
+ .icon-bar {
+   background-color: white;
+ }
+
+ #logo {
+   width: 20px;
+   height: 20px;
+   /*margin-top: -21px;*/
+ }
+
+ /*#new_post_nav {
+   margin-top: 30px;
+ }*/
+
+ #hello {
+   color: #9d9d9d;
+   margin-top: 15px;
+   display: flex;
+ }
+
+ #hello a {
+   padding: 0px 4px 0px 4px;
+ }
+
+ .form-inline {
+   margin-top: 8px;
+ }

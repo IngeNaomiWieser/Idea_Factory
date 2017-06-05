@@ -1,19 +1,22 @@
-<h1>Show page</h1>
+<div class="container">
 
-<h3><%= @idea.title %></h3>
-<p><%= @idea.body %></p>
+  <h3><%= @idea.title %></h3>
+  <h6>Created by <%= @idea.user.first_name %></h6>
+  <p><%= @idea.body %></p>
 
 
-<% if can? :edit, @idea %>
-  <%= link_to "Edit", edit_idea_path(@idea), class: "btn btn-primary" %>
-<% end %>
-<% if can? :destroy, @idea %>
-  <%= link_to 'Delete', idea_path(@idea),
-                          method: :delete,
-                          data:{confirm: 'Are you sure?'}, class: "btn btn-danger" %>
-<% end %>
+  <% if can? :edit, @idea %>
+    <%= link_to "Edit", edit_idea_path(@idea), class: "btn btn-default" %>
+  <% end %>
+  <% if can? :destroy, @idea %>
+    <%= link_to 'Delete', idea_path(@idea),
+                            method: :delete,
+                            data:{confirm: 'Are you sure?'}, class: "btn btn-default" %>
+  <% end %>
 
-  <h2>Submit your review: </h2>
+  <br><br><br><br>
+
+  <h4>Submit your review: </h4>
   <%= @review.errors.full_messages.join(', ') %>
   <%= bootstrap_form_for [@idea, @review] do |f| %>
     <%= f.text_area :body %>
@@ -29,3 +32,4 @@
     <% end %>
     <hr>
   <% end %>
+</div>
