@@ -16,20 +16,22 @@
 
   <br><br><br><br>
 
-  <h4>Submit your review: </h4>
-  <%= @review.errors.full_messages.join(', ') %>
-  <%= bootstrap_form_for [@idea, @review] do |f| %>
-    <%= f.text_area :body %>
-    <%= f.submit 'Submit', class: "btn btn-success" %>
-  <% end %>
+  <div class="well">
+    <h4>Submit your review </h4>
+    <%= @review.errors.full_messages.join(', ') %>
+    <%= bootstrap_form_for [@idea, @review] do |f| %>
+      <%= f.text_area :body %>
+      <%= f.submit 'Submit', class: "btn btn-success" %>
+    <% end %>
+  </div>
   <hr>
 
   <% @idea.reviews.each do |review| %>
-    <%= review.body %>
-    <% if can? :destroy, review %>
-      <%= link_to 'Delete your review', [@idea, review],
-        method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger pull-right" %>
-    <% end %>
+      <%= review.body %>
+      <% if can? :destroy, review %>
+        <%= link_to 'Delete your review', [@idea, review],
+          method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger pull-right" %>
+      <% end %>
     <hr>
   <% end %>
 </div>
