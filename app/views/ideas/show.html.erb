@@ -28,9 +28,16 @@
 
   <% @idea.reviews.each do |review| %>
       <%= review.body %>
+      <% if review.is_flagged %>
+        <span><i class="fa fa-flag" aria-hidden="true"></i></span>
+      <% end %>
       <% if can? :destroy, review %>
         <%= link_to 'Delete your review', [@idea, review],
           method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger pull-right" %>
+      <% end %>
+      <% if can? :flag, review %>
+        <%= link_to (review.is_flagged ? 'Unflag' : 'Flag'), [@idea, review],
+          method: :put, class: "btn btn-info pull-right flag-button" %>
       <% end %>
     <hr>
   <% end %>

@@ -12,7 +12,11 @@ class Ability
 
     # Alleen de maker van de comment kan de comment verwijderen
     can :destroy, Review do |review|
-      review.user == user
+      user == review.user
+    end
+
+    can :flag, Review do |review|
+      user == review.idea.user
     end
 
     # Define abilities for the passed in user here. For example:

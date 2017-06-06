@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:create, :destroy] # nu zouden niet ingelogde users geen reviews mogen creeren of deleten
+  before_action :authenticate_user!, only: [:create, :update, :destroy] # nu zouden niet ingelogde users geen reviews mogen creeren of deleten
 
   def create
     @idea = Idea.find params[:idea_id]
@@ -14,6 +14,22 @@ class ReviewsController < ApplicationController
     else
       flash[:alert] = 'Problem creating review'
       render 'ideas/show'
+    end
+  end
+
+  def update
+    @idea = Idea.find params[:idea_id]
+    @review = Review.find params[:id]
+    if can? :flag, @review
+      if @review.is_flagged
+        @review.is_flagged = false
+      else
+        @review.is_flagged = true
+      end
+      @review.save
+      redirect_to @idea
+    else
+      redirect_to @idea, alert: "You can not flag this... "
     end
   end
 
