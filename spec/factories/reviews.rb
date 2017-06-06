@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :review do
-    body "MyText"
-    idea nil
+    association :idea, factory: :idea
+    association :user, factory: :user
+    body Faker::Friends.quote
   end
 end

@@ -23,6 +23,7 @@ class IdeasController < ApplicationController
       if @idea.save
         redirect_to idea_path(@idea), notice: "Idea created successfully"
       else
+        flash.now[:alert] = "Problem creating idea"
         render :new
       end
     end
