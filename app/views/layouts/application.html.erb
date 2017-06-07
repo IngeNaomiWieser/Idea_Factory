@@ -24,7 +24,6 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
          <ul class="nav navbar-nav">
-          <li> <%= link_to 'New Idea', new_idea_path %></li> |
           <% if user_signed_in? %>
             <li id="hello"> Hello <%= current_user.first_name %> ! </li> |
             <li> <%= link_to 'Log out', sessions_path %></li>

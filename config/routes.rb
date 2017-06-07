@@ -3,9 +3,6 @@ Rails.application.routes.draw do
 
   root "ideas#index"
 
-  # resources :ideas
-
-
   resources :users, only: [:new, :create]
 
   resources :ideas do
@@ -15,5 +12,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create] do
     get :destroy, on: :collection
   end
+
+
 
 end

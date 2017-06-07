@@ -5,6 +5,7 @@ class IdeasController < ApplicationController
   before_action :find_idea, only: [:show, :edit, :update, :destroy]
 
     def index
+      @idea = Idea.new
       @ideas = Idea.all
     end
 
