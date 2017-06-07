@@ -1,7 +1,7 @@
 <div class="container">
 
   <h3><%= @idea.title %></h3>
-  <h6>Created by <%= @idea.user.first_name %></h6>
+  <h6>Created by:  <%= @idea.user.first_name %></h6>
   <p><%= @idea.body %></p>
 
 
@@ -39,6 +39,7 @@
         <%= link_to (review.is_flagged ? 'Unflag' : 'Flag'), [@idea, review],
           method: :put, class: "btn btn-info pull-right flag-button" %>
       <% end %>
+    <h6>Created by:  <%= review.user.first_name %></h6>
     <hr>
   <% end %>
 </div>

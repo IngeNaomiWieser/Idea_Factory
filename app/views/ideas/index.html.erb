@@ -3,17 +3,18 @@
     <div class="idea-container">
       <div class="row">
         <div class="col-sm-6 idea-title">
-          <h5><%= link_to idea.title, idea_path(idea) %></h5>
+          <h5 class="idea_title"><%= link_to idea.title, idea_path(idea) %></h5>
         </div>
+        <button class="show_button btn btn-default pull-right">Show</button>
       </div>
       <div class="slide_div">
         <div class="row">
-          <div>
+          <div class="idea_body">
             <%= idea.body %>
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-2">
+          <div class="col-sm-2 author_div_index">
             <p class="pull-left author"> By <%= idea.user.first_name %> </p>
           </div>
 
