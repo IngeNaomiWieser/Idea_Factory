@@ -7,11 +7,13 @@ class IdeasController < ApplicationController
     def index
       @idea = Idea.new
       @ideas = Idea.all
+
     end
 
     def show
       # @ideas = Idea.all
       @review = Review.new
+      @like = @idea.like_for(current_user)
     end
 
     def new
